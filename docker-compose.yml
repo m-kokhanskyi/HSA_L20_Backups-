@@ -1,0 +1,19 @@
+version: '3'
+services:
+  mysql_l20:
+    image: mysql:8.0-debian
+    env_file:
+      - ./Docker/mysql/conf/mysql_master.env
+    container_name: "mysql_l20"
+    restart: "no"
+    ports:
+      - 4407:3306
+    volumes:
+      - ./Docker/mysql/conf/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
+      - ./data/mysql_l20/:/var/lib/mysql
+      - ./log/mysql_l20/:/var/log/mysql
+    networks:
+      - overlay
+networks:
+  overlay:
+
